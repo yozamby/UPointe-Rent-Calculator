@@ -1,0 +1,81 @@
+.custom-radio {
+    display: none; /* Hide the radio button */
+}
+
+.custom-radio + label {
+    position: relative;
+    padding: 5px 10px; /* Add padding to make it look like a button */
+    cursor: pointer;
+    border: 1px solid #000; /* Add a border */
+    border-radius: 4px; /* Add rounded corners */
+    background-color: #f0f0f0; /* Set a background color */
+    margin-right: 10px; /* Add some space between buttons */
+    transition: background-color 0.3s; /* Add a transition for smooth color change */
+}
+
+.custom-radio:checked + label {
+    background-color: #007BFF; /* Change the background color when the radio button is selected */
+    color: #fff; /* Change the text color when the radio button is selected */
+}
+
+.calculate-rent-button {
+    margin-top: 20px
+}
+
+.container {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    max-width: 1500px; /* Set a fixed width for the container */
+}
+
+
+.questions {
+    /* Add any styles you want for the questions div */
+    flex: 1; /* To make both divs take up equal width inside the container */
+    max-width: 50%; /* Set a maximum width for the questions div */
+}
+
+.calculate-rent-button {
+    /* Add any styles you want for the calculate-rent-button div */
+    flex: 1; /* To make both divs take up equal width inside the container */
+    max-width: 50%; /* Set a maximum width for the calculate-rent-button div */
+}
+
+
+
+.charges-table {
+    border-collapse: collapse;
+}
+
+.charges-table th,
+.charges-table td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+.charges-table th {
+    background-color: #f2f2f2;
+}
+
+.monthly-total {
+    background-color: #bebebe;
+}
+
+.move-in-total {
+    background-color: #dfdfdf;
+}
+
+
+.total {
+    display: grid;
+}
+.button-container {
+    display:grid;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+
+
