@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Pointe Rent Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>University Pointe Rent Calculator</h1>
+
+    <div class="container">
+        <div class="questions">
+            <p>Student</p>
+            <input type="radio" class="custom-radio" id="student_yes" name="student" value="yes" checked>
+            <label for="student_yes">Student</label>
+            <input type="radio" class="custom-radio" id="student_no" name="student" value="no">
+            <label for="student_no">Non Student</label>
+
+
+            <p>Floor plan</p>
+            <div class="radio-group">
+                <span id="floorplan_1x1_container">
+                    <input type="radio" class="custom-radio" id="floorplan_1x1" name="floorplan" value="1x1" checked>
+                    <label for="floorplan_1x1">1x1</label>
+                </span>
+                <span id="floorplan_2x2_container">
+                    <input type="radio" class="custom-radio" id="floorplan_2x2" name="floorplan" value="2x2 Standard">
+                    <label for="floorplan_2x2">2x2</label>
+                </span>
+                <span id="floorplan_3x3_container">
+                    <input type="radio" class="custom-radio" id="floorplan_3x3" name="floorplan" value="3x3 Standard">
+                    <label for="floorplan_3x3">3x3</label>
+                </span>
+                <span id="floorplan_3x3_deluxe_container">
+                    <input type="radio" class="custom-radio" id="floorplan_3x3_deluxe" name="floorplan"
+                        value="3x3 Deluxe Standard">
+                    <label for="floorplan_3x3_deluxe">3x3 Deluxe</label>
+                </span>
+                <span id="floorplan_4x4_container">
+                    <input type="radio" class="custom-radio" id="floorplan_4x4" name="floorplan" value="4x4 Standard">
+                    <label for="floorplan_4x4">4x4</label>
+                </span>
+                <span id="floorplan_studio_container">
+                    <input type="radio" class="custom-radio" id="floorplan_studio" name="floorplan"
+                        value="Studio Standard">
+                    <label for="floorplan_studio">Studio</label>
+                </span>
+            </div>
+
+            <!-- Bed Size MASTER/STANDARD/FURNISHED -->
+            <div id="bed_size_container">
+                <p>Bed Size</p>
+                <p id="bed_size">
+                    <!-- The options will be populated by JavaScript -->
+                </p>
+            </div>
+
+            <!-- Furniture Fee -->
+            <div>
+                <p>Is the unit furnished?</p>
+                <input type="radio" id="furnished_yes" class="custom-radio" name="furnished" value="yes" checked>
+                <label for="furnished_yes">Yes</label>
+                <input type="radio" id="furnished_no" class="custom-radio" name="furnished" value="no">
+                <label for="furnished_no">No</label>
+            </div>
+
+            <!-- Security Deposit -->
+            <div>
+                <p>Is your income 3 times the base rent?</p>
+                <input type="radio" name="income" class="custom-radio" id="income_yes" value="yes" checked>
+                <label for="income_yes">Yes</label>
+                <input type="radio" name="income" class="custom-radio" id="income_no" value="no">
+                <label for="income_no">No</label>
+            </div>
+
+            <!-- Car -->
+            <div>
+                <p>Do you have a car?</p>
+                <input type="radio" name="car" class="custom-radio" id="car_yes" value="yes" checked>
+                <label for="car_yes">Yes</label>
+                <input type="radio" name="car" class="custom-radio" id="car_no" value="no">
+                <label for="car_no">No</label>
+            </div>
+
+            <!-- Pet Fee -->
+            <div>
+                <p>Do you have a pet?</p>
+                <input type="radio" name="pet" class="custom-radio" id="pet_yes" value="yes">
+                <label for="pet_yes">Yes</label>
+                <input type="radio" name="pet" class="custom-radio" id="pet_no" value="no" checked>
+                <label for="pet_no">No</label>
+                <input type="radio" name="pet" class="custom-radio" id="pet_esa" value="esa">
+                <label for="pet_esa">ESA</label>
+            </div>
+
+            <!-- Short Term Lease -->
+            <div>
+                <p>Short Term Lease? (9-11 months)</p>
+                <input type="radio" name="short_term_lease" class="custom-radio" id="short_term_lease_yes" value="yes">
+                <label for="short_term_lease_yes">Yes</label>
+                <input type="radio" name="short_term_lease" class="custom-radio" id="short_term_lease_no" value="no"
+                    checked>
+                <label for="short_term_lease_no">No</label>
+            </div>
+        </div>
+
+        <div class="total">
+            <button class="button-container" id="calculate">Calculate Rent</button>
+
+            <table class="charges-table">
+                <tr>
+                    <th>Charge Description</th>
+                    <th>Amount</th>
+                </tr>
+                <tr>
+                    <td>One-time Administrative Fee</td>
+                    <td><span id="admin_fee"></span></td>
+                </tr>
+                <tr>
+                    <td>Security Deposit</td>
+                    <td><span id="security_deposit"></span></td>
+                </tr>
+                <tr>
+                    <td>Base Rent</td>
+                    <td><span id="base_rent"></span></td>
+                </tr>
+                <tr>
+                    <td>Bedroom Upgrade</td>
+                    <td><span id="bedroom_upgrade"></span></td>
+                </tr>
+                <tr>
+                    <td>Furniture Fee</td>
+                    <td><span id="furniture_fee"></span></td>
+                </tr>
+                <tr>
+                    <td>Parking Fee</td>
+                    <td><span id="parking_fee"></span></td>
+                </tr>
+                <tr>
+                    <td>Pet Fee</td>
+                    <td><span id="pet_fee"></span></td>
+                </tr>
+                <tr id="one_time_pet_fee_line">
+                    <td>One Time Pet Fee</td>
+                    <td><span id="one_time_pet_fee"></span></td>
+                </tr>
+                <tr>
+                    <td>Short Term Lease Fee</td>
+                    <td><span id="short_term_lease_fee"></span></td>
+                </tr>
+                <tr class="monthly-total">
+                    <td>Monthly Rent</td>
+                    <td><span id="total_rent"></span></td>
+                </tr>
+                <tr class="move-in-total">
+                    <td>Total Move-in Cost</td>
+                    <td><span id="total_move_in_cost"></span></td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+
+
+    <script src="rent_calculator.js"></script>
+
+
+</body>
+
+</html>
