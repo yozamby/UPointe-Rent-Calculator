@@ -74,7 +74,11 @@
                 <label for="income_yes">Yes</label>
                 <input type="radio" name="income" class="custom-radio" id="income_no" value="no">
                 <label for="income_no">No</label>
+                <input type="radio" name="income" class="custom-radio" id="income_custom" value="custom">
+                <label for="income_custom">Custom</label>
+                <input type="number" id="custom_security_deposit" placeholder="Enter custom value" style="display:none;">
             </div>
+
 
             <!-- Car -->
             <div>
@@ -113,7 +117,7 @@
             <table class="charges-table">
                 <tr>
                     <th>Charge Description</th>
-                    <th>Amount</th>
+                    <th>Amount        </th>
                 </tr>
                 <tr>
                     <td>One-time Administrative Fee</td>
@@ -150,6 +154,10 @@
                 <tr>
                     <td>Short Term Lease Fee</td>
                     <td><span id="short_term_lease_fee"></span></td>
+                </tr>
+                <tr>
+                    <td>Utilities</td>
+                    <td><span id="utilities"></span></td>
                 </tr>
                 <tr class="monthly-total">
                     <td>Monthly Rent</td>
