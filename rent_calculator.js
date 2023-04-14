@@ -159,8 +159,23 @@ function calculateAdminFee(isStudent) {
 
 // Security Deposit
 function calculateSecurityDeposit(isIncomeThreeTimesBaseRent, baseRent) {
-    return isIncomeThreeTimesBaseRent ? baseRent : baseRent * 2;
+    const customSecurityDepositInput = document.getElementById("custom_security_deposit");
+    const customSecurityDeposit = parseFloat(customSecurityDepositInput.value);
+
+    if (!isNaN(customSecurityDeposit) && customSecurityDeposit > 0) {
+        return customSecurityDeposit;
+    } else {
+        return isIncomeThreeTimesBaseRent ? baseRent : baseRent * 2;
+    }
 }
+
+
+function resetCustomSecurityDepositInput() {
+    const customSecurityDepositInput = document.getElementById("custom_security_deposit");
+    customSecurityDepositInput.value = "";
+}
+
+
 
 // Parking Fee
 function calculateParkingFee(isStudent, hasCar) {
@@ -198,6 +213,18 @@ function calculatePetFee(hasPet, isESA) {
 // Short Term Fee
 function calculateShortTermLeaseFee(isShortTermLease) {
     return isShortTermLease ? `$${prices.shortTermLeaseFee.toFixed(2)}` : 'N/A';
+}
+
+// Utilities Fe
+function displayUtilities() {
+    const studentYes = document.getElementById("student_yes");
+    const utilitiesElement = document.getElementById("utilities");
+
+    if (studentYes.checked) {
+        utilitiesElement.textContent = "Included";
+    } else {
+        utilitiesElement.textContent = "Depends on usage";
+    }
 }
 
 
@@ -297,6 +324,8 @@ function calculateRent() {
     document.getElementById("total_rent").innerText = `$${total_monthly_rent.toFixed(2)}`;
 
     updateTotalMoveInCost();
+    displayUtilities(); 
+
 }
 
 function updateOneTimePetFeeVisibility() {
@@ -324,6 +353,9 @@ document.getElementById('income_no').addEventListener('change', calculateRent);
 document.getElementById('student_yes').addEventListener('change', updateFloorplanOptions);
 document.getElementById('student_no').addEventListener('change', updateFloorplanOptions);
 
+document.getElementById('student_yes').addEventListener('change', calculateRent);
+document.getElementById('student_no').addEventListener('change', calculateRent);
+
 // Short Term Lease event listeners
 document.getElementById('short_term_lease_yes').addEventListener('change', calculateRent);
 document.getElementById('short_term_lease_no').addEventListener('change', calculateRent);
@@ -332,7 +364,6 @@ document.getElementById('short_term_lease_no').addEventListener('change', calcul
 const floorplanRadioButtons = document.getElementsByName('floorplan');
 for (const floorplanRadioButton of floorplanRadioButtons) {
     floorplanRadioButton.addEventListener('change', updateBedSizeOptions);
-
 
 }
 
@@ -353,11 +384,41 @@ document.getElementById('pet_yes').addEventListener('change', updateOneTimePetFe
 document.getElementById('pet_no').addEventListener('change', updateOneTimePetFeeVisibility);
 document.getElementById('pet_esa').addEventListener('change', updateOneTimePetFeeVisibility);
 
+// Utilities event listeners
+document.getElementById("student_yes").addEventListener("change", displayUtilities);
+document.getElementById("student_no").addEventListener("change", displayUtilities);
+
 document.addEventListener('DOMContentLoaded', () => {
     updateBedSizeOptions();
     updateFloorplanOptions();
     updateOneTimePetFeeVisibility(); // Add this line
 
 
-
+// Security Deposit
+document.getElementById("income_custom").addEventListener("change", function() {
+    if (this.checked) {
+        document.getElementById("custom_security_deposit").style.display = "inline-block";
+    }
 });
+
+document.getElementById("income_yes").addEventListener("change", function () {
+    if (this.checked) {
+        document.getElementById("custom_security_deposit").style.display = "none";
+        resetCustomSecurityDepositInput();
+        calculateRent();
+    }
+});
+
+document.getElementById("income_no").addEventListener("change", function () {
+    if (this.checked) {
+        document.getElementById("custom_security_deposit").style.display = "none";
+        resetCustomSecurityDepositInput();
+        calculateRent();
+    }
+});
+
+
+document.getElementById("custom_security_deposit").addEventListener("input", calculateRent);
+
+
+})
